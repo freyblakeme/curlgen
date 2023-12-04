@@ -104,7 +104,7 @@
 
         const headers = [];
         curl.split('-H "').splice(1).forEach(function (value, index) {
-            headers.push(`\t\t"${value.split('"')[0]},`);
+            headers.push(`\t\t"${value.split('"')[0]}",`);
         });
         if(method == 'post') {
             document.getElementById('curl').value = `$ch = curl_init();\ncurl_setopt_array($ch, [\n\tCURLOPT_URL => "${url}",\n\tCURLOPT_PROXY => $proxy,\n\tCURLOPT_PROXYUSERPWD => $userpass,\n\tCURLOPT_RETURNTRANSFER => true,\n\tCURLOPT_COOKIEFILE => $cookies,\n\tCURLOPT_COOKIEJAR => $cookies,\n\tCURLOPT_HTTPHEADER => [\n${headers.join('\n')}\n\t],\nCURLOPT_POSTFIELDS => "${data}",\n]);\n\n$result = curl_exec($ch);\ncurl_close($ch);`
